@@ -1,0 +1,28 @@
+{
+    "name": "pixney/statamic-image-generator",
+    "description": "Precache statamic images defined by directory.",
+    "autoload": {
+        "psr-4": {
+            "Pixney\\StatamicImageGenerator\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "William Åström"
+        }
+    ],
+    "support": {
+        "email": "hello@pixney.com"
+    },
+    "extra": {
+        "statamic": {
+            "name": "Image Generator",
+            "description": "Creates different sizes of images for picture sources"
+        },
+        "laravel": {
+            "providers": [
+                "Pixney\\StatamicImageGenerator\\ServiceProvider"
+            ]
+        }
+    }
+}
