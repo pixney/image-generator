@@ -7,6 +7,9 @@ Inspired by https://github.com/spatie/statamic-responsive-images
 ## Installation
 `composer require "pixney/statamic-image-generator"`
 
+`php artisan vendor:publish` -> image-generator-configuration
+`php artisan vendor:publish` -> image-generator-views
+
 ### Tag 
 `{{ picture:image alt="{{image.alt}}" class="image another-image-class" attributes='data-nameit="add value here"'}}`
 

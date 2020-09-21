@@ -1,18 +1,17 @@
 <?php
 return [
     'extExceptions' => ['svg'],
-    'directories' =>
-    [
+    'directories'   => [
         'work' => [
             'small' => [
-                'params' => ['width' => 818,  'quality' => 90, 'fit' => 'crop'],
+                'params'  => ['w' => 818,  'q' => 90, 'fit' => 'crop'],
                 'formats' => ['jpg', 'webp'],
                 'queries' => [
                     'media' => '(max-width: 414px)'
                 ]
             ],
             'medium' => [
-                'params' => ['width' => 1818,  'quality' => 90, 'fit' => 'crop'],
+                'params'  => ['w' => 1818,  'q' => 90, 'fit' => 'crop'],
                 'formats' => ['jpg', 'webp'],
                 'queries' => [
                     'media' => '(max-width: 1200px)'
@@ -21,14 +20,14 @@ return [
         ],
         'news' => [
             'small' => [
-                'params' => ['width' => 818,  'quality' => 90, 'fit' => 'crop'],
+                'params'  => ['w' => 818,  'q' => 90, 'fit' => 'crop'],
                 'formats' => ['jpg', 'webp'],
                 'queries' => [
                     'media' => '(max-width: 414px)'
                 ]
             ],
             'medium' => [
-                'params' => ['width' => 1818,  'quality' => 90, 'fit' => 'crop'],
+                'params'  => ['w' => 1818,  'q' => 90, 'fit' => 'crop'],
                 'formats' => ['jpg', 'webp'],
                 'queries' => [
                     'media' => '(max-width: 1200px)'
