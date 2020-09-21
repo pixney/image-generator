@@ -7,3 +7,15 @@
     {{ /foreach:sources }}
     <img src="{{ fallback }}" alt="{{ alt }}" class="{{ class }}" {{ attributes }}>
 </picture>
+
+{{# EXAMPLE FOR USE WITH LAZY LOADING AND SVG PLACEHOLDER
+<picture>
+    {{ foreach:sources }}
+    {{ if (value.formats | in_array:webp) }}
+    <source media="{{ value.queries.media }}" data-srcset="{{ value.paths.webp }}" type="image/webp">
+    {{ /if }}
+    <source media="{{ value.queries.media }}" data-srcset="{{ value.paths.jpg }}">
+    {{ /foreach:sources }}
+    <img src="{{ placeholder }}" data-src="{{ fallback }}" alt="{{ alt }}" class="{{ class }}" {{ attributes }}>
+</picture>
+#}}

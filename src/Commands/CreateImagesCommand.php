@@ -5,7 +5,6 @@ namespace Pixney\StatamicImageGenerator\Commands;
 
 use Illuminate\Console\Command;
 use Statamic\Console\RunsInPlease;
-use Statamic\Contracts\Assets\Asset;
 use Statamic\Facades\AssetContainer;
 use Illuminate\Support\Facades\Artisan;
 use Statamic\Contracts\Assets\AssetRepository;
@@ -30,15 +29,37 @@ class CreateImagesCommand extends Command
         $this->getOutput()->progressStart(0);
 
         foreach ($directoryNames as $dir) {
-            AssetContainer::find('assets')->assets($dir, true)
-                ->filter(function (Asset $asset) use ($directories, $dir, $extExceptions) {
-                    if ($asset->isImage() && !in_array($asset->extension(), $extExceptions)) {
-                        dispatch(new CreateImagesJob($asset, $directories[$dir]));
-                        $this->getOutput()->progressAdvance();
-                    }
-                });
-        }
+            $this->info("\n\n" . 'Looking for assets within :' . $dir);
 
-        $this->getOutput()->progressFinish();
+            $foundAssets = AssetContainer::find('assets')->assets($dir, true);
+
+            if (!$foundAssets->count()) {
+                $this->warn('Could not find any files to create within: ' . $dir);
+                continue;
+            }
+
+            $validAssets = collect();
+
+            foreach ($foundAssets as $key => $asset) {
+                if ($asset->isImage() && !in_array($asset->extension(), $extExceptions)) {
+                    $validAssets->push($asset);
+                }
+            }
+
+            if (!$validAssets->count()) {
+                $this->warn('Could not find any files to create. Potentially becuase found files file extensions are within configuration exception settings.');
+                continue;
+            }
+
+            $this->info('Found ' . $validAssets->count() . ' Images to create.');
+            $this->output->progressStart($validAssets->count());
+
+            $validAssets->each(function ($item, $key) use ($directories,$dir) {
+                dispatch(new CreateImagesJob($item, $directories[$dir]));
+                $this->getOutput()->progressAdvance();
+            });
+
+            $this->getOutput()->progressFinish();
+        }
     }
 }

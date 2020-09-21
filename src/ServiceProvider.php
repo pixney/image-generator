@@ -3,13 +3,12 @@
 namespace Pixney\StatamicImageGenerator;
 
 use Statamic\Events\AssetUploaded;
-use Pixney\StatamicImageGenerator\Tags\Picture;
 use Statamic\Providers\AddonServiceProvider;
+use Pixney\StatamicImageGenerator\Tags\Picture;
 use Pixney\StatamicImageGenerator\Listeners\CreateImagesOnUpload;
 
 class ServiceProvider extends AddonServiceProvider
 {
-
     protected $publishAfterInstall = false;
 
     protected $listen = [
@@ -26,12 +25,11 @@ class ServiceProvider extends AddonServiceProvider
         \Pixney\StatamicImageGenerator\Commands\CreateImagesCommand::class,
     ];
 
-    function boot(): void
+    public function boot(): void
     {
         parent::boot();
 
         if ($this->app->runningInConsole()) {
-
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('image-generator.php'),
             ], 'image-generator-configuration');
@@ -43,7 +41,4 @@ class ServiceProvider extends AddonServiceProvider
             __DIR__ . '/../resources/views' => resource_path('views/vendor/image-generator'),
         ], 'image-generator-views');
     }
-
-   
-
 }
