@@ -63,7 +63,7 @@ class Picture extends Tags
             'class'         => $this->params->get('class', ''),
             'alt'           => $this->params->get('alt', ''),
             'attributes'    => $this->params->get('attributes'),
-            'placeholder'   => "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='" . $asset->width() . "' height='" . $asset->height() . "' %3E%3Cpath fill='%23ddd' d='M0 0h" . $asset->width() . 'v' . $asset->height() . "H0z'/%3E%3C/svg%3E"
+            'placeholder'   => "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='" . $asset->width() . "' height='" . $asset->height() . "' viewBox='0 0 " . $asset->width() . ' ' . $asset->height() . "'%3E%3C/svg%3E"
         ])->render();
     }
 
