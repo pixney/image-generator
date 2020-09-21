@@ -5,8 +5,10 @@ run a command to make the accessing of websites faster and prevent time-out issu
 Inspired by https://github.com/spatie/statamic-responsive-images
 
 ## Installation
+`composer require "pixney/statamic-image-generator"`
+
 ### Tag 
-{{ picture:image alt="{{image.alt}}" class="image another-image-class" attributes='data-nameit="add value here"'}}
+`{{ picture:image alt="{{image.alt}}" class="image another-image-class" attributes='data-nameit="add value here"'}}`
 
 ```
 <picture>
